@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import test.spring.Database;
 import test.spring.DatabaseRecord;
 
@@ -42,9 +43,9 @@ public class Home {
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String remove(String index)
+    public String remove(@RequestParam("id") int id)
     {
-        database.remove(castFreemarkerInputToInt(index));
+        database.remove(id);
 
         return "redirect:index.html";
     }

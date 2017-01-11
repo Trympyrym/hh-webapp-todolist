@@ -13,14 +13,14 @@
                 <tr>
                     <td>
                         <form action="remove.html" method="post">
-                            <input type="hidden" name="index" value=${task.index}/>
+                            <input type="hidden" name="index" value="${task.index}"/>
                             <input type="submit" value="Remove">
                         </form>
                     </td>
-                    <td>${task.name}</td><td>${task.done?string('yes', 'no')}</td>
+                    <td>${task.name?html}</td><td>${task.done?string('yes', 'no')}</td>
                     <td>
                         <form action="changeDoneMark.html" method="post">
-                            <input type="hidden" name="index" value=${task.index}/>
+                            <input type="hidden" name="index" value="${task.index}"/>
                             <input type="submit" value="Change "done" Mark">
                         </form>
                     </td>
