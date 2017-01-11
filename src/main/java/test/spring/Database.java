@@ -1,13 +1,14 @@
 package test.spring;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by trympyrym on 11.01.17.
  */
 public class Database {
-    private List<DatabaseRecord> data = new ArrayList<>();
+    private List<DatabaseRecord> data = Collections.synchronizedList(new ArrayList<>());
     public void add(DatabaseRecord record)
     {
         data.add(record);

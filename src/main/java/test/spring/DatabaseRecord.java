@@ -5,11 +5,8 @@ package test.spring;
  */
 public class DatabaseRecord {
 
-    private static int currentMaxIndex;
-    static
-    {
-        currentMaxIndex = 0;
-    }
+    private static int currentMaxIndex = 0;
+
     private String name;
     private boolean done;
 
