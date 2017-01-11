@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import test.spring.Database;
 import test.spring.DatabaseRecord;
 
@@ -42,23 +43,20 @@ public class Home {
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String remove(String index)
+    public String remove(@RequestParam("id") String index)
     {
-        database.remove(castFreemarkerInputToInt(index));
+        database.remove(index);
 
         return "redirect:index.html";
     }
 
     @RequestMapping(value = "/changeDoneMark", method = RequestMethod.POST)
-    public String changeDoneMark(String index)
+    public String changeDoneMark(@RequestParam("id") String index)
     {
-        database.changeDoneMark(castFreemarkerInputToInt(index));
+        database.changeDoneMark(index);
 
         return "redirect:index.html";
     }
 
-    private Integer castFreemarkerInputToInt(String argString)
-    {
-        return Integer.parseInt(argString.substring(0, argString.length() - 1));
-    }
+
 }

@@ -1,46 +1,39 @@
 package test.spring;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by trympyrym on 11.01.17.
  */
 public class Database {
-    private List<DatabaseRecord> data = new ArrayList<>();
-    public void add(DatabaseRecord record)
+    private static Integer nextKey = 0;
+    private Map<String, DatabaseRecord> data = new HashMap<>();
+    public synchronized void add(DatabaseRecord record)
     {
-        data.add(record);
+        data.put(Database.nextKey.toString(), record);
+        Database.nextKey++;
     }
 
-    public void remove(Integer index)
+    public void remove(String index)
     {
-
-        for (DatabaseRecord task: data)
+        synchronized (data)
         {
-            if (task.getIndex() == index)
-            {
-                data.remove(task);
-                break;
-            }
+            data.remove(index);
         }
     }
 
-    public void changeDoneMark(Integer index)
+    public void changeDoneMark(String index)
     {
-
-        for (DatabaseRecord task: data)
+        synchronized (data)
         {
-            if (task.getIndex() == index)
-            {
-                task.changeDoneMark();
-                break;
-            }
+            data.get(index).changeDoneMark();
         }
     }
 
 
-    public List<DatabaseRecord> getAll()
+    public Map<String, DatabaseRecord> getAll()
     {
         return data;
     }
