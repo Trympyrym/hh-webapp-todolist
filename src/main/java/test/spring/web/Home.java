@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import test.spring.Database;
 import test.spring.DatabaseRecord;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class Home {
@@ -36,7 +34,7 @@ public class Home {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@RequestParam("newTaskname") String newTaskName)
+    public String add(@RequestParam("newTaskName") String newTaskName)
     {
         database.add(new DatabaseRecord(newTaskName));
         return "redirect:index.html";

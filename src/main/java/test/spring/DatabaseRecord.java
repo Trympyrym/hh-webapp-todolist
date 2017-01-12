@@ -5,24 +5,16 @@ package test.spring;
  */
 public class DatabaseRecord {
 
-    private static int currentMaxIndex;
-    static
-    {
-        currentMaxIndex = 0;
-    }
     private String name;
     private boolean done;
 
-    public int getIndex() {
-        return index;
-    }
 
     public void changeDoneMark()
     {
         this.done = !this.done;
     }
 
-    private int index;
+
 
     public String getName() {
         return this.name;
@@ -38,7 +30,6 @@ public class DatabaseRecord {
     }
 
     public DatabaseRecord(String name) {
-        DatabaseRecord.currentMaxIndex++;
         initialize(name, false);
     }
 
@@ -46,6 +37,5 @@ public class DatabaseRecord {
     {
         this.name = name;
         this.done = done;
-        this.index = DatabaseRecord.currentMaxIndex;
     }
 }
