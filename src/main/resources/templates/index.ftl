@@ -7,7 +7,7 @@
         <h1>${model.name}</h1>
         <table>
             <tr>
-                <th></th><th>Task</th><th>Done</th><th>Change "done" mark</th><th>Index</th>
+                <th></th><th>Task</th><th>Done</th><th>Change "done" mark</th><th>Index</th><th>Edit</th>
             </tr>
             <#list model.tasks?keys as index>
             <#assign task=model.tasks[index]>
@@ -22,10 +22,16 @@
                     <td>
                         <form action="changeDoneMark.html" method="post">
                             <input type="hidden" name="id" value="${index}"/>
-                            <input type="submit" value="Change \"done\" Mark">
+                            <input type="submit" value="Change&nbsp;done&nbsp;Mark">
                         </form>
                     </td>
                     <td>"${index}"</td>
+                    <td>
+                        <form action="Edit.html" method="get">
+                            <input type="hidden" name="id" value="${index}">
+                            <input type="submit" value="Edit">
+                        </form>
+                    </td>
                 </tr>
             </#list>
         </table>

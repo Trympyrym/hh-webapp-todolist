@@ -32,9 +32,28 @@ public class Database {
         }
     }
 
+    public String getName(String index)
+    {
+        synchronized (data)
+        {
+            return data.get(index).getName();
+        }
+    }
+
+    public void setName(String index, String newName)
+    {
+        synchronized (data)
+        {
+            data.get(index).setName(newName);
+        }
+    }
 
     public Map<String, DatabaseRecord> getAll()
     {
-        return data;
+
+        synchronized (data)
+        {
+            return data;
+        }
     }
 }

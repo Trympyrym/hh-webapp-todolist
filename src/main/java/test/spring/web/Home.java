@@ -36,7 +36,7 @@ public class Home {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(String newTaskName)
+    public String add(@RequestParam("newTaskname") String newTaskName)
     {
         database.add(new DatabaseRecord(newTaskName));
         return "redirect:index.html";
@@ -58,5 +58,20 @@ public class Home {
         return "redirect:index.html";
     }
 
+    @RequestMapping(value = "/Edit", method = RequestMethod.GET)
+    public String openEditForm(@RequestParam("id") String index, @ModelAttribute("model") ModelMap model)
+    {
+        model.addAttribute("name", "Editing");
+        model.addAttribute("index", index);
+        model.addAttribute("taskName", database.getName(index));
+        return "edit";
+    }
+
+    @RequestMapping(value = "/rename", method = RequestMethod.POST)
+    public String renameTask(@RequestParam("id") String index, @RequestParam("newName") String newName)
+    {
+        database.setName(index, newName);
+        return "redirect:index.html";
+    }
 
 }

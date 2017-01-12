@@ -28,6 +28,11 @@ public class DatabaseRecord {
         return this.name;
     }
 
+    public void setName(String newName)
+    {
+        this.name = newName;
+    }
+
     public boolean isDone() {
         return this.done;
     }
